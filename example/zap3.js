@@ -1,0 +1,1 @@
+console.log(require('./zoop3')(5)) // should resolve to zoop3.litcoffee and give 555
