@@ -20,7 +20,10 @@ function ParseError(error, src, file) {
     this.line = error.location.first_line + 1; // cs linenums are 0-indexed
     this.column = error.location.first_column + 1; // same with columns
 
-    var markerLen = 2 + error.location.last_column - error.location.first_column;
+    var markerLen = 2;
+    if(error.location.first_line === error.location.last_line) {
+        markerLen += error.location.last_column - error.location.first_column;
+    }
     this.annotated = [
         file + ':' + this.line,
         src.split('\n')[this.line - 1],
