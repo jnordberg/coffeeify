@@ -4,8 +4,6 @@ browserify v2 plugin for coffee-script
 
 mix and match `.coffee` and `.js` files in the same project
 
-**important: when using require('path/to/file.coffee') remember to use .coffee extension - soon to be fixed, [the browserify devs have relented](https://github.com/shtylman/node-browser-resolve/issues/20#issuecomment-18303661)! go [+1 this pr](https://github.com/shtylman/node-browser-resolve/pull/12) until it gets merged :-)**
-
 [![Build Status](https://travis-ci.org/jnordberg/coffeeify.png?branch=master)](https://travis-ci.org/jnordberg/coffeeify)
 
 # example
@@ -40,6 +38,18 @@ when you compile your app, just pass `-t coffeeify` to browserify:
 
 ```
 $ browserify -t coffeeify foo.coffee > bundle.js
+$ node bundle.js
+555
+```
+
+you can omit the `.coffee` extension from your requires if you add the extension to browserify's module extensions:
+
+``` js
+module.exports = require('./baz')(5)
+```
+
+```
+$ browserify -t coffeeify --extension=coffee foo.coffee > bundle.js
 $ node bundle.js
 555
 ```
