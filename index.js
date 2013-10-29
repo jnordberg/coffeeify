@@ -96,8 +96,8 @@ function coffeeify(file) {
 coffeeify.compile = compile;
 coffeeify.isCoffee = isCoffee;
 coffeeify.isLiterate = isLiterate;
-coffeeify.options = function(options) {
-    sourceMap = options.sourceMap || sourceMap;
+coffeeify.sourceMap = function(bool) {
+    sourceMap = bool;
     return coffeeify
 }
 
