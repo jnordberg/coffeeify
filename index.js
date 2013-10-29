@@ -1,12 +1,7 @@
 var coffee = require('coffee-script'),
     through = require('through'),
     convert = require('convert-source-map'),
-    sourceMap;
-
-module.exports = function(options) {
-    sourceMap = options.sourceMap || false;
-    return coffeeify;
-}
+    sourceMap = true;
 
 function isCoffee (file) {
     return (/\.((lit)?coffee|coffee\.md)$/).test(file);
@@ -101,3 +96,9 @@ function coffeeify(file) {
 coffeeify.compile = compile;
 coffeeify.isCoffee = isCoffee;
 coffeeify.isLiterate = isLiterate;
+coffeeify.options = function(options) {
+    sourceMap = options.sourceMap || sourceMap;
+    return coffeeify
+}
+
+module.exports = coffeeify;
