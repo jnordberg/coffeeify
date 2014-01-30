@@ -1,6 +1,7 @@
-var coffee = require('coffee-script');
-var through = require('through');
-var convert = require('convert-source-map');
+var coffee = require('coffee-script'),
+    through = require('through'),
+    convert = require('convert-source-map'),
+    sourceMap = true;
 
 function isCoffee (file) {
     return (/\.((lit)?coffee|coffee\.md)$/).test(file);
@@ -43,10 +44,11 @@ ParseError.prototype.inspect = function () {
 };
 
 function compile(file, data, callback) {
-    var compiled;
+    var comment = '', 
+        compiled;
     try {
         compiled = coffee.compile(data, {
-            sourceMap: true,
+            sourceMap: sourceMap,
             generatedFile: file,
             inline: true,
             bare: true,
@@ -61,10 +63,14 @@ function compile(file, data, callback) {
         return;
     }
 
-    var map = convert.fromJSON(compiled.v3SourceMap);
-    map.setProperty('sources', [file]);
+    if (sourceMap) {
+        var map = convert.fromJSON(compiled.v3SourceMap);
+        map.setProperty('sources', [file]);
+        comment = map.toComment();
+        compiled = compiled.js;        
+    }
 
-    callback(null, compiled.js + '\n' + map.toComment());
+    callback(null, compiled + '\n' + comment);
 }
 
 function coffeeify(file) {
@@ -90,5 +96,9 @@ function coffeeify(file) {
 coffeeify.compile = compile;
 coffeeify.isCoffee = isCoffee;
 coffeeify.isLiterate = isLiterate;
+coffeeify.sourceMap = function(bool) {
+    sourceMap = bool;
+    return coffeeify
+}
 
 module.exports = coffeeify;
