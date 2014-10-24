@@ -17,9 +17,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jnordberg/coffeeify.git"
+    "url": "git://github.com/call-a3/coffeeify.git"
   },
-  "homepage": "https://github.com/jnordberg/coffeeify",
+  "homepage": "https://github.com/call-a3/coffeeify",
   "keywords": [
     "coffee-script",
     "browserify",
@@ -38,6 +38,11 @@
       "name": "Johan Nordberg",
       "email": "code@johan-nordberg.com",
       "url": "http://johan-nordberg.com"
+    },
+    {
+      "name": "Adriaan Callaerts",
+      "email": "adriaan.callaerts@gmail.com",
+      "url": "https://github.com/call-a3"
     }
   ],
   "license": "MIT"

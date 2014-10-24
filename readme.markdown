@@ -4,8 +4,8 @@ browserify v2 plugin for coffee-script
 
 mix and match `.coffee` and `.js` files in the same project
 
-[![Build Status](https://travis-ci.org/call-a3/coffeeify.png?branch=master)](https://travis-ci.org/jnordberg/coffeeify)
-[![Dependencies](https://david-dm.org/call-a3/coffeeify.svg?branch=master)](https://david-dm.org/jnordberg/coffeeify)
+[![Build Status](https://travis-ci.org/call-a3/coffeeify.png?branch=master)](https://travis-ci.org/call-a3/coffeeify)
+[![Dependencies](https://david-dm.org/call-a3/coffeeify.svg?branch=master)](https://david-dm.org/call-a3/coffeeify)
 
 # example
 
