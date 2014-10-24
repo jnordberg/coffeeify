@@ -1,5 +1,5 @@
-﻿var coffee = require('coffee-script');
-var through = require('through');
+﻿var coffee = require('coffee-script-redux');
+var through = require('through2');
 var convert = require('convert-source-map');
 
 function isCoffee (file) {
