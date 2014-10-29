@@ -1,7 +1,7 @@
 var test      =  require('tap').test;
 var fs        =  require('fs');
 var path      =  require('path');
-var through   =  require('through');
+var through   =  require('through2');
 var convert   =  require('convert-source-map');
 var transform =  require('..');
 
