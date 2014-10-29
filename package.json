@@ -17,9 +17,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/call-a3/coffeeify.git"
+    "url": "git://github.com/jnordberg/coffeeify.git"
   },
-  "homepage": "https://github.com/call-a3/coffeeify",
+  "homepage": "https://github.com/jnordberg/coffeeify",
   "keywords": [
     "coffee-script",
     "browserify",
