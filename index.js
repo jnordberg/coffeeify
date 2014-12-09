@@ -1,6 +1,7 @@
 ﻿var coffee = require('coffee-script');
 var through = require('through');
 var convert = require('convert-source-map');
+var alreadyProcessed = {};
 
 function isCoffee (file) {
     return (/\.((lit)?coffee|coffee\.md)$/).test(file);
@@ -44,24 +45,29 @@ ParseError.prototype.inspect = function () {
 
 function compile(file, data, callback) {
     var compiled;
-    try {
-        compiled = coffee.compile(data, {
-            sourceMap: coffeeify.sourceMap,
-            generatedFile: file,
-            inline: true,
-            bare: true,
-            literate: isLiterate(file)
-        });
-    } catch (e) {
-        var error = e;
-        if (e.location) {
-            error = new ParseError(e, data, file);
+    if(!alreadyProcessed[file]) {
+        try {
+            compiled = coffee.compile(data, {
+                sourceMap: coffeeify.sourceMap,
+                generatedFile: file,
+                inline: true,
+                bare: true,
+                literate: isLiterate(file)
+            });
+            alreadyProcessed[file] = true;
+        } catch (e) {
+            var error = e;
+            if (e.location) {
+                error = new ParseError(e, data, file);
+            }
+            callback(error);
+            return;
         }
-        callback(error);
-        return;
+    } else {
+        compiled = data;
     }
 
-    if (coffeeify.sourceMap) {
+    if (compiled && compiled.js && compiled.v3SourceMap) {
         var map = convert.fromJSON(compiled.v3SourceMap);
         map.setProperty('sources', [file]);
         callback(null, compiled.js + '\n' + map.toComment() + '\n');
@@ -73,6 +79,8 @@ function compile(file, data, callback) {
 
 function coffeeify(file) {
     if (!isCoffee(file)) return through();
+
+    alreadyProcessed[file] = false;
 
     var data = '', stream = through(write, end);
 
