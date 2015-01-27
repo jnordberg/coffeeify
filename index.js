@@ -1,4 +1,4 @@
-﻿var coffee = require('coffee-script');
+var coffee = require('coffee-script');
 var through = require('through');
 var convert = require('convert-source-map');
 
@@ -49,7 +49,7 @@ function compile(file, data, callback) {
             sourceMap: coffeeify.sourceMap,
             generatedFile: file,
             inline: true,
-            bare: true,
+            bare: coffeeify.bare,
             literate: isLiterate(file)
         });
     } catch (e) {
@@ -68,7 +68,7 @@ function compile(file, data, callback) {
     } else {
         callback(null, compiled + '\n');
     }
-    
+
 }
 
 function coffeeify(file) {
@@ -95,5 +95,6 @@ coffeeify.compile = compile;
 coffeeify.isCoffee = isCoffee;
 coffeeify.isLiterate = isLiterate;
 coffeeify.sourceMap = true; // use source maps by default
+coffeeify.bare = true; // use bare as default
 
 module.exports = coffeeify;
