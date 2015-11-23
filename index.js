@@ -48,6 +48,7 @@ ParseError.prototype.inspect = function () {
 function compile(filename, source, options, callback) {
     var compiled;
     var basename = path.basename(filename);
+    var jsFileName = basename.replace(filePattern, '.js');
     var compileOptions = {
         sourceMap: options.sourceMap,
         inline: true,
@@ -56,7 +57,7 @@ function compile(filename, source, options, callback) {
         literate: isLiterate(filename)
     };
     if(options.generatedFile)
-      compileOptions[generatedFile] = basename.replace(filePattern, '.js');
+      compileOptions[generatedFile] = jsFileName;
     try {
         compiled = coffee.compile(source, compileOptions);
     } catch (e) {
@@ -70,7 +71,7 @@ function compile(filename, source, options, callback) {
 
     if (options.sourceMap) {
         var map = convert.fromJSON(compiled.v3SourceMap);
-        map.setProperty('file', basename.replace(filePattern, '.js'));
+        map.setProperty('file', jsFileName);
         map.setProperty('sources', [basename]);
         callback(null, compiled.js + '\n' + map.toComment() + '\n');
     } else {
