@@ -2,6 +2,7 @@
 var convert = require('convert-source-map');
 var path = require('path');
 var through = require('through2');
+var assign = require('object-assign')
 
 var filePattern = /\.((lit)?coffee|coffee\.md)$/;
 
@@ -69,6 +70,12 @@ function compile(filename, source, options, callback) {
         var basename = path.basename(filename);
         map.setProperty('file', basename.replace(filePattern, '.js'));
         map.setProperty('sources', [basename]);
+
+        if(options.sourceMap == 'noCoffee'){
+          //give me granular JS only
+          delete map.sourcemap.sourcesContent;
+          map.setProperty('mappings', '');
+        }
         callback(null, compiled.js + '\n' + map.toComment() + '\n');
     } else {
         callback(null, compiled + '\n');
@@ -87,15 +94,7 @@ function coffeeify(filename, options) {
         header: false
     };
 
-    for (var i = 0, keys = Object.keys(compileOptions); i < keys.length; i++) {
-        var key = keys[i], option = options[key];
-        if (typeof option !== 'undefined' && option !== null) {
-            if (option === 'false' || option === 'no' || option === '0') {
-                option = false;
-            }
-            compileOptions[key] = !!option;
-        }
-    }
+    assign(compileOptions, options);
 
     var chunks = [];
     function transform(chunk, encoding, callback) {

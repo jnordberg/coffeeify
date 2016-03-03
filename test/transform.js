@@ -49,3 +49,29 @@ test('transform does not add sourcemap when sourceMap option is false', function
   }
 
 });
+
+test('transform adds sourcemap comment when sourceMap option is "noCoffee"', function (t) {
+    t.plan(1);
+    var data = '';
+
+    var file = path.join(__dirname, '../example/foo.coffee');
+    fs.createReadStream(file)
+        .pipe(transform(file, {sourceMap: 'noCoffee'}))
+        .pipe(through(write, end));
+
+    function write (buf) { data += buf }
+    function end () {
+        var sourceMap = convert.fromSource(data).toObject();
+
+        t.deepEqual(
+            sourceMap,
+            { version: 3,
+              file: 'foo.js',
+              sourceRoot: '',
+              sources: [ 'foo.coffee' ],
+              names: [],
+              mappings: ''},
+            'adds sourcemap comment including original source'
+      );
+    }
+});
