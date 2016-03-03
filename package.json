@@ -6,6 +6,7 @@
   "dependencies": {
     "coffee-script": "^1.10.0",
     "convert-source-map": "^1.1.2",
+    "object-assign": "4.0.1",
     "through2": "^2.0.0"
   },
   "devDependencies": {
