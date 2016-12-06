@@ -3,7 +3,7 @@ var convert = require('convert-source-map');
 var path = require('path');
 var through = require('through2');
 
-var filePattern = /\.((lit)?coffee|coffee\.md)$/;
+var filePattern = /\.(_?(lit)?coffee|coffee\.md)$/;
 
 function isCoffee (file) {
     return filePattern.test(file);
