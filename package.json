@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "browserify": "^13.1.1",
+    "coffeescript": "*",
     "tap": "^8.0.1",
     "through": "^2.3.8"
   },
