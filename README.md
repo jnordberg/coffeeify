@@ -24,10 +24,10 @@ baz.coffee:
 module.exports = (n) -> n ** n
 ```
 
-Install coffeeify into your app:
+Install coffeeify into your app, and CoffeeScript if you don't have it already:
 
 ```
-$ npm install coffeeify
+$ npm install --save-dev coffeeify coffeescript
 ```
 
 When you compile your app, just pass `-t coffeeify` to browserify:
@@ -95,8 +95,14 @@ bundle.bundle (error, result) ->
 
 With [npm](https://npmjs.org) do:
 
+```bash
+npm install --save-dev coffeeify
 ```
-npm install coffeeify
+
+CoffeeScript is not installed automatically, so that you can choose what version of CoffeeScript you'd like:
+
+```bash
+npm install --save-dev coffeescript  # Or coffeescript@1 to use CoffeeScript 1.x
 ```
 
 ## License

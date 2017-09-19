@@ -1,6 +1,6 @@
 {
   "name": "coffeeify",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "browserify plugin for coffeescript with support for mixed .js and .coffee files",
   "main": "index.js",
   "dependencies": {
@@ -8,11 +8,11 @@
     "through2": "^2.0.0"
   },
   "peerDependencies": {
-    "coffeescript": "*"
+    "coffeescript": ">= 1 < 3"
   },
   "devDependencies": {
     "browserify": "^13.1.1",
-    "coffeescript": "*",
+    "coffeescript": ">= 1 < 3",
     "tap": "^8.0.1",
     "through": "^2.3.8"
   },
