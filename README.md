@@ -2,7 +2,7 @@
 
 CoffeeScript browserify transform. Mix and match `.coffee` and `.js` files in the same project.
 
-**NOTE: As of version 3.0.0 coffeeify requires CoffeeScript to be installed manually as a peerDependency, also note the package name change from coffee-script to coffeescript.**
+**NOTE: As of version 3.0.0 coffeeify requires CoffeeScript to be installed manually as a peerDependency, also note that the CoffeeScript package has changed name from `coffee-script` to `coffeescript`.**
 
 ## Example
 
