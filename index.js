@@ -1,4 +1,4 @@
-﻿var coffee = require('coffee-script');
+﻿var coffee = require('coffeescript');
 var convert = require('convert-source-map');
 var path = require('path');
 var through = require('through2');

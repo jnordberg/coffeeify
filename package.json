@@ -1,15 +1,21 @@
 {
   "name": "coffeeify",
-  "version": "2.1.0",
-  "description": "browserify plugin for coffee-script with support for mixed .js and .coffee files",
+  "version": "3.0.0",
+  "description": "browserify plugin for coffeescript with support for mixed .js and .coffee files",
+  "engines": {
+    "node": ">=6"
+  },
   "main": "index.js",
   "dependencies": {
-    "coffee-script": "^1.12.0",
     "convert-source-map": "^1.3.0",
     "through2": "^2.0.0"
   },
+  "peerDependencies": {
+    "coffeescript": ">= 1 < 3"
+  },
   "devDependencies": {
     "browserify": "^13.1.1",
+    "coffeescript": ">= 1 < 3",
     "tap": "^8.0.1",
     "through": "^2.3.8"
   },
@@ -22,6 +28,7 @@
   },
   "homepage": "https://github.com/jnordberg/coffeeify",
   "keywords": [
+    "coffeescript",
     "coffee-script",
     "browserify",
     "v2",
