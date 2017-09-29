@@ -8,16 +8,16 @@
     "through2": "^2.0.0"
   },
   "peerDependencies": {
-    "coffeescript": ">= 1 < 3"
+    "coffeescript": ">1.9.2 <3"
   },
   "devDependencies": {
     "browserify": "^14.4.0",
-    "coffeescript": "^2.0.1",
     "tap": "^10.7.2",
+    "test-all-versions": "^3.1.1",
     "through": "^2.3.8"
   },
   "scripts": {
-    "test": "tap test/*.js"
+    "test": "tav coffeescript '>1.9.2 <99' tap test/*.js"
   },
   "repository": {
     "type": "git",
