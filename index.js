@@ -48,13 +48,10 @@ ParseError.prototype.inspect = function () {
 function compile(filename, source, options, callback) {
     var compiled;
     try {
-        compiled = coffee.compile(source, {
-            sourceMap: options.sourceMap,
-            inline: true,
-            bare: options.bare,
-            header: options.header,
-            literate: isLiterate(filename)
-        });
+        compiled = coffee.compile(source, Object.assign({
+          inline: true,
+          literate: isLiterate(filename)
+        }, options));
     } catch (e) {
         var error = e;
         if (e.location) {
@@ -88,13 +85,13 @@ function coffeeify(filename, options) {
         header: false
     };
 
-    for (var i = 0, keys = Object.keys(compileOptions); i < keys.length; i++) {
+    for (var i = 0, keys = Object.keys(options); i < keys.length; i++) {
         var key = keys[i], option = options[key];
         if (typeof option !== 'undefined' && option !== null) {
             if (option === 'false' || option === 'no' || option === '0') {
                 option = false;
             }
-            compileOptions[key] = !!option;
+            compileOptions[key] = option;
         }
     }
 
